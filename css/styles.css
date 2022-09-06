@@ -167,6 +167,8 @@ img {
   display: block;
   padding-top: 32px;
   padding-bottom: 32px;
+
+  transition: color 250ms var(--animation-effect);
 }
 
 .site-nav .link:hover,
@@ -203,6 +205,8 @@ img {
   color: var(--main-cl);
   padding-top: 32px;
   padding-bottom: 32px;
+
+  transition: color 250ms var(--animation-effect);
 }
 
 .contacts .link:hover,
@@ -272,6 +276,8 @@ img {
   cursor: pointer;
   box-shadow: 0px 4px 4px var(--hero-btn-shadow-cl);
   border-radius: 4px;
+
+  transition: background-color 250ms var(--animation-effect);
 }
 
 .hero .button:hover,
@@ -426,12 +432,19 @@ img {
   height: 44px;
   border-radius: 50%;
   fill: var(--light-ico-cl);
+
+  transition: background-color 250ms var(--animation-effect);
 }
 
 .team-social-link:hover,
 .team-social-link:focus {
   background-color: var(--blue-cl);
 }
+
+.team-social-icon {
+  transition: fill 250ms var(--animation-effect);
+}
+
 .team-social-link:hover .team-social-icon,
 .team-social-link:focus .team-social-icon {
   fill: var(--white-cl);
@@ -455,6 +468,8 @@ img {
 
 .clients-link {
   fill: var(--light-ico-cl);
+
+  transition: fill 250ms var(--animation-effect);
 }
 
 .clients-link:hover,
@@ -475,6 +490,8 @@ img {
   width: 170px;
   border: 1px solid var(--light-ico-cl);
   border-radius: 4px;
+
+  transition: border-color 250ms var(--animation-effect);
 }
 
 /*
@@ -504,6 +521,9 @@ img {
   font-size: 16px;
   line-height: 1.62;
   letter-spacing: 0.03em;
+
+  transition: background-color 250ms var(--animation-effect),
+    box-shadow 250ms var(--animation-effect), color 250ms var(--animation-effect);
 }
 
 .filter-list button:hover,
@@ -582,6 +602,8 @@ img {
 
 .examples-link {
   display: block;
+
+  transition: box-shadow 250ms var(--animation-effect);
 }
 
 .examples-overlay-thumb {
@@ -638,10 +660,14 @@ img {
 
 .footer-link {
   color: var(--white-cl);
+
+  transition: color 250ms var(--animation-effect);
 }
 
 .footer-link-alfa {
   color: var(--white-alfa-cl);
+
+  transition: color 250ms var(--animation-effect);
 }
 
 .footer-link:hover,
@@ -678,6 +704,8 @@ img {
   height: 44px;
   border-radius: 50%;
   background-color: var(--dark-ico-cl);
+
+  transition: background-color 250ms var(--animation-effect);
 }
 
 .footer-social-icon {
