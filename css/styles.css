@@ -12,6 +12,9 @@
   --btn-bg-cl: #f5f4fa;
   --hero-btn-accent-cl: #188ce8;
   --blue-bg-cl: #2196f3;
+  --white-bg-cl: #fff;
+  --overlay-bg-cl-08: rgba(47, 48, 58, 0.8);
+  --overlay-text-bg-cl: rgba(33, 150, 243, 0.9);
 
   /* others */
   --light-ico-cl: #afb1b8;
@@ -20,6 +23,8 @@
   --label-border-cl: #eee;
   --hero-btn-shadow-cl: rgba(0, 0, 0, 0.15);
   --hero-overlay-cl: rgba(47, 48, 58, 0.4);
+  --modal-overlay-cl: rgba(0, 0, 0, 0.2);
+  --animation-effect: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /*
@@ -33,6 +38,16 @@ body {
   font-size: 14px;
   line-height: 1.71;
   letter-spacing: 0.03em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 
 img {
@@ -135,15 +150,6 @@ img {
   letter-spacing: 0.02em;
 }
 
-.site-nav .link:hover,
-.site-nav .link:focus {
-  color: var(--blue-cl);
-}
-
-.site-nav .link.current {
-  color: var(--blue-cl);
-}
-
 /* .site-nav .item:not(:last-child) {
   margin-right: 50px;
 }  правильне рішення, але є досить складним*/
@@ -152,10 +158,32 @@ img {
   margin-left: 50px;
 } /* oldschool-рішення, але робочий варіант та його часто використовують */
 
+.site-nav .link.current {
+  color: var(--blue-cl);
+}
+
 .site-nav .link {
+  position: relative;
   display: block;
   padding-top: 32px;
   padding-bottom: 32px;
+}
+
+.site-nav .link:hover,
+.site-nav .link:focus {
+  color: var(--blue-cl);
+}
+
+.site-nav .link.current::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  display: block;
+  width: 100%;
+  height: 4px;
+
+  background-color: var(--blue-bg-cl);
+  border-radius: 2px;
 }
 
 .contacts {
@@ -202,7 +230,6 @@ img {
 |=================================
  */
 .hero-title {
-  margin-top: 0;
   margin-bottom: 30px;
   width: 696px;
   margin-left: auto;
@@ -258,8 +285,6 @@ img {
 |=================================
 */
 .section-title {
-  margin-top: 0;
-  margin-bottom: 0;
   color: var(--header-cl);
   font-weight: 700;
   font-size: 36px;
@@ -334,6 +359,22 @@ img {
   margin-left: 30px;
 }
 
+.work-list .item {
+  position: relative;
+}
+
+.work-list-text {
+  position: absolute;
+  bottom: 0;
+  padding-top: 27px;
+  padding-bottom: 27px;
+  width: 100%;
+  text-transform: uppercase;
+  background-color: var(--overlay-bg-cl-08);
+  color: var(--white-cl);
+  text-align: center;
+}
+
 /* 
 |=================================
 |     team 
@@ -399,7 +440,6 @@ img {
 .team-social-list {
   display: flex;
   justify-content: space-between;
-  /* align-content: center; */
 }
 
 /* 
@@ -544,6 +584,34 @@ img {
   display: block;
 }
 
+.examples-overlay-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.examples-overlay-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translatey(100%);
+  display: inline-block;
+  padding: 24px 63px;
+  width: 370px;
+  height: 294px;
+
+  color: var(--white-cl);
+  background-color: var(--overlay-text-bg-cl);
+  font-size: 18px;
+  line-height: 1.56;
+
+  transition: transform 250ms var(--animation-effect);
+}
+
+.examples-link:hover .examples-overlay-text,
+.examples-link:focus .examples-overlay-text {
+  transform: translateY(0);
+}
+
 /*
 |=================================
 | footer 
@@ -619,4 +687,55 @@ img {
 .footer-social-link:hover,
 .footer-social-link:focus {
   background-color: var(--blue-bg-cl);
+}
+
+/*
+|=================================
+|     Modal window 
+|=================================
+*/
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-overlay-cl);
+
+  opacity: 1;
+  transition: opacity 250ms var(--animation-effect);
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  min-width: 528px;
+  min-height: 581px;
+
+  background-color: var(--white-bg-cl);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  transition: transform 250ms var(--animation-effect);
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.1);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-close-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  padding: 0;
+
+  border: none;
+  background-color: var(--white-bg-cl);
 }
